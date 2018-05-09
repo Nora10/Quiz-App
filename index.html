@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+	
+<title>NORA'S SOFTWARE QUIZ</title>
+ <link rel="stylesheet" href= "style.css">
+
+</head>
+	
+<body>
+	
+	<div id = "quizCarriage" class = "container">
+	
+	<div class = "titleContainer">
+		NORA'S SOFTWARE QUIZ
+	</div>
+	
+	<div id="question" class="questions">
+	
+	</div>
+
+<label class="optionsAvailable"><input type= "radio" class="radio" name = "option" value = "1" /><span id="objective1"></span></label>
+<label class="optionsAvailable"><input type= "radio" class="radio"  name = "option" value = "2" /><span id="objective2"></span></label>
+<label class="optionsAvailable"><input type= "radio" class="radio" name = "option" value = "3" /><span id="objective3"></span></label>
+<label class= "optionsAvailable"><input type= "radio" class="radio"  name = "option" value = "4" /><span id="objective4"></span></label>
+<button id="proceedButton" class= "proceedButtons" onclick="displayNextQuestion();"> Proceed To Next Question</button>
+</div>
+
+<div id= "result" class="resultContainer" style= "display:none;">
+</div>
+
+
+
+<script>
+
+var questions = [{
+	"question": "Which of the following programming languages requires a compiler?",
+	"objective1": "Python",
+	"objective2":"Java",
+	"objective3":"PHP",
+	"objective4":"Lisp",
+	"answer": "2"
+}, {
+	"question": "Which of the following is not a programming language?",
+	"objective1": "HTML",
+	"objective2":"Clojure",
+	"objective3":"Smalltalk",
+	"objective4":"Python",
+	"answer": "1"
+
+}, {
+	"question": "who is making the web standards?",
+	"objective1": "the world web consortium",
+	"objective2":"google",
+	"objective3":"microsoft",
+	"objective4":"mozilla",
+	"answer": "1"
+}, {
+	"question": "What 3 things are important setup to start programming in any language?",
+	"objective1": "A text editor, compiler, internet",
+	"objective2":"A text editor, compiler, interpreter",
+	"objective3":"Internet, web browser, interpreter",
+	"objective4":"A compiler, internet, web browser",
+	"answer": "2"
+}, {
+	"question": "What statement BEST describes why the Big-O notation is a very useful way of analyzing algorithm complexity?",
+	"objective1": "It is very easy to understand",
+	"objective2":"It focuses on the performance of the algorithm itself, not of the hardware used to run the algorithm",
+	"objective3":"It gives the average case running time of an algorithm",
+	"objective4":"It can be used for more than analyzing algorithms",
+	"answer": "2"
+}, {
+	"question": "Which of the following is not a sorting algorithm",
+	"objective1": "Binary sort",
+	"objective2":"Heap sort",
+	"objective3":"Merge sort",
+	"objective4":"Quicksort",
+	"answer": "1"
+}, {
+	"question": "choose the correct HTML element to define emphasized text",
+	"objective1": "<important>",
+	"objective2":"<lb>",
+	"objective3":"<em>",
+	"objective4":"<break>",
+	"answer": "3"
+}, {
+	"question": "Do you need an IF-ELSE statement to prevent infinite recursion?",
+	"objective1":"Yes",
+	"objective2":"No",
+	"objective3":"Sometimes",
+	"objective4":"Undecided",
+	"answer": "1"
+}, {
+	"question": " JavaScript is a subset of Java?",
+	"objective1": "Yes",
+	"objective2":"No",
+	"objective3":"Sometimes",
+	"objective4":"Undecided",
+	"answer": "2"
+}, {
+	"question": "What is the correct HTML for making a checkbox?",
+	"objective1": "<checkbox>",
+	"objective2":"<input type='check'>",
+	"objective3":"<input type='checkbox'>",
+	"objective4":"<check>",
+	"answer": "3"
+}
+];
+
+
+
+var questionInUse = 0;
+var scores = 0; 
+var tenQuestions= questions.length;
+var container = document.getElementById('quizCarriage');
+var questionTitle = document.getElementById('question');
+var firstObjective = document.getElementById('objective1');
+var secondObjective = document.getElementById('objective2');
+var thirdObjective = document.getElementById('objective3');
+var fourthObjective = document.getElementById('objective4');
+var proceedButton = document.getElementById('proceedButtons');
+
+var resultStorage = document.getElementById('result')
+
+function displayQuizQuestion (questionIndex) {
+	var m = questions[questionIndex];
+	questionTitle.textContent = (questionIndex + 1) + '.' + m.question;
+	firstObjective.textContent = m.objective1;
+	secondObjective.textContent = m.objective2;
+	thirdObjective.textContent = m.objective3;
+	fourthObjective.textContent= m.objective4;
+	document.getElementById('proceedButton').disabled=true;
+}
+
+
+//setting event listeners for the radio buttons
+var radioButton = document.getElementsByClassName('radio');
+for(var i=0; i<radioButton.length; i++){
+radioButton[i].addEventListener("change",function(){document.getElementById('proceedButton').disabled=false;});
+}
+
+function displayNextQuestion(){
+	
+	var selectedOption = document.querySelector('input[type=radio]:checked');
+ 
+	//content value of radio button
+	var radioButtonContent = selectedOption.value;
+	if(questions[questionInUse].answer==radioButtonContent){
+		scores+=1;
+	}
+	
+	//uncheck radio
+	selectedOption.checked = false;
+	
+	
+	if((questionInUse+1)<tenQuestions-1){
+	questionInUse++;
+	displayQuizQuestion(questionInUse);
+	}
+	else if((questionInUse+1)==tenQuestions-1){
+		questionInUse++;
+		document.getElementById('proceedButton').innerHTML= 'Submit';
+		displayQuizQuestion(questionInUse);
+}else {
+
+		document.getElementById("quizCarriage").style.display = 'none';
+		resultStorage.style.display="block";
+		resultStorage.innerHTML = 'Quiz Completed! '+'<br>'+ ' Your Total Score is :' + scores + ' out of 10.';
+}
+
+	}
+
+//calling the function	
+displayQuizQuestion(questionInUse);
+
+</script>
+
+</body>
+</html>

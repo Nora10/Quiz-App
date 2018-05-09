@@ -1,0 +1,82 @@
+body{
+	font-family: "Roboto Slab", serif;
+	background: #E5989B;
+
+}
+.container{
+	position:absolute;
+	top:50%;
+	left:50%;
+	transform: translateX(-50%) translateY(-50%);
+	background: rgba(255, 255, 255, 0.5);
+	padding:20px;
+	border:1px solid #6D6875;
+    height: 350px;
+	width: 1000px;
+}
+
+.titleContainer{
+	padding-top: 20px;
+	text-align: center;
+	font-size: 36px;
+	text-transform: uppercase;
+	color:black;
+}
+
+.questions{
+	padding:20px;
+	font-size: 22px;
+	background: #926163;
+	border-radius: 20px;
+	margin:10px 0 10px 0;
+	color: #b5838d;
+}
+
+.optionsAvailable{
+	width: 470px;
+	display: inline-block;
+	padding:10px 0 10px 10px;
+	vertical-align: middle;
+	background: rgba(255,255,255,0.5);
+	margin: 10px 0 10px 10px;
+	color:#a76f71;
+	border-radius: 20px;
+}
+
+.optionsAvailable:hover{ 
+	background:#926163;
+	color:#b5838d;
+
+}
+
+.proceedButtons{
+	border:none;
+	outline:none;
+	background-color: rgba(255, 255, 255, 0.5);
+  color: black;
+	width: 100px;
+	height:35px;
+	border-radius: 20px;
+	cursor:pointer;
+	float: right;
+	margin:10px;
+
+}
+
+.proceedButtons:hover{
+	background: #bcbac0;
+	color: white;
+  
+
+}
+
+.resultContainer{
+	height:100px;
+	text-align: center;
+	font-size: 75px;
+}
+
+.optionAvailable input:checked .optionAvailable{
+  background: #bcbac0;
+  color: #000;
+}
